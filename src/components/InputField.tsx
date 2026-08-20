@@ -17,9 +17,9 @@ function InputField({ label, placeholder, isPassword = false, isErrorMessage = f
 
     const dimensions: DisplayMetrics | DisplayMetricsAndroid = useWindowDimensions();
 
-    return <View style={{ backgroundColor: 'tomato' }}>
+    return <View>
         <Text style={styles.label}>{label}</Text>
-        <View style={{ backgroundColor: 'maroon' }}>
+        <View>
             <TextInput style={[styles.textInput, { width: dimensions.width * 0.75 }, isFocus && styles.focusState,]}
                 placeholder={placeholder}
                 placeholderTextColor={COLOR_PALETTE.TEXT_TERTIARY.Hex}
@@ -27,9 +27,11 @@ function InputField({ label, placeholder, isPassword = false, isErrorMessage = f
                 onBlur={() => setIsFocus(!isFocus)}
                 secureTextEntry={showPassword}
             />
-            {isPassword && <TouchableOpacity style={styles.passwordBtn} activeOpacity={0.7} onPress={() => setShowPassword(!showPassword)}>
-                <Image source={showPassword ? ASSETS.icons.show : ASSETS.icons.hidden} style={styles.passwordIcon} />
-            </TouchableOpacity>}
+            <View style={styles.passwordBtnParent}>
+                {isPassword && <TouchableOpacity style={styles.passwordBtn} activeOpacity={0.7} onPress={() => setShowPassword(!showPassword)}>
+                    <Image source={showPassword ? ASSETS.icons.show : ASSETS.icons.hidden} style={styles.passwordIcon} />
+                </TouchableOpacity>}
+            </View>
         </View>
         {isErrorMessage && <Text style={styles.helperText}>Error Message</Text>}
     </View>
@@ -68,14 +70,16 @@ const styles = StyleSheet.create({
         lineHeight: TYPOGRAPHY_SCALES.Small.lineHeight,
         marginTop: 4
     },
-    passwordBtn: {
+    passwordBtnParent: {
+        position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 40,
-        height: 40,
+        width: '100%',
+        height: '100%',
+    },
+    passwordBtn: {
         marginLeft: 'auto',
-        position: 'relative',
-        top: -45,
+        padding: 10
     },
     passwordIcon: {
         width: 20,
