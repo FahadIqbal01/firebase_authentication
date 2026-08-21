@@ -5,20 +5,26 @@
  * @format
  */
 
-import { KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import InputField from './src/components/InputField';
-import PrimaryButton from './src/components/PrimaryButton';
+import Toast from './src/components/Toast';
+// import Checkbox from './src/components/Checkbox';
+// import { COLOR_PALETTE } from './src/constants/theme';
+// import LinkText from './src/components/LinkText';
+// import InputField from './src/components/InputField';
+// import PrimaryButton from './src/components/PrimaryButton';
+// import SecondaryButton from './src/components/SecondaryButton';
 
 function App() {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={styles.keyboardAvoidingView}>
-        <InputField label='Email' placeholder='Enter your email' />
-        <InputField label='Password' placeholder='Enter your password' isPassword isErrorMessage/>
-        <PrimaryButton text='Login' onPress={()=>console.log('Primary Button Press')} loading={false}/>
+        {/* <Checkbox>
+          <Text style={{ color: COLOR_PALETTE.PRIMARY.Hex }}>Terms & Privacy Policy</Text>
+        </Checkbox> */}
+        <Toast />
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 }
 
